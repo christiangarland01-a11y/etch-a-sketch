@@ -2,7 +2,6 @@ const container = document.querySelector("#container");
 const containerWidth = 960;
 
 function createGrid(row) {
-    let totalSquares = row*row;
     for (let i = 1; i <= row; i++) {
         for (let j = 1; j <= row; j++) {
             const div = document.createElement("div");
@@ -13,6 +12,13 @@ function createGrid(row) {
             container.appendChild(div);
         }
     }
+    
+    const wholeGrid = document.querySelectorAll("#container>div");
+    wholeGrid.forEach(square => {
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = getRandomColor();
+        })
+    })
 }
 
 function getRandomColor() {
@@ -25,6 +31,5 @@ function getRandomColor() {
     return hexCode;
 }
 
+createGrid(16);
 
-
-createGrid(20);
